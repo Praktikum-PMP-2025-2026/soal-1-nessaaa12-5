@@ -16,81 +16,59 @@
  * 4. Semua node dianggap valid
  */
 
- #include <stdio.h>
- #include <string.h>
+#include <stdio.h>
 
- #define MAX 50
+#define MAX 100
 
- void deletespace(int arr[], int idx) {
-    if (idx >= 0 && arr[idx] == ' ') {
-        arr[idx] = '\0'; // Move the null terminator back
-        deletespace(arr, idx - 1); 
+void preorder(int arr[], int idx, int N) {
+    if (idx >= N) {
+        return;
     }
+    
+    printf("%d ", arr[idx]);               
+    preorder(arr, 2 * idx + 1, N);        
+    preorder(arr, 2 * idx + 2, N);        
 }
 
- //Fungsi pre-order
- void preorder(int arr[], int idx, int N){
-    //kalau proses sudah selesai, return
-    if (idx>=N){
+
+void inorder(int arr[], int idx, int N) {
+    if (idx >= N) {
         return;
     }
-    printf("%d", arr[idx]);   
-    if(idx<N-1){
-        printf(" ");
-    }   
-    preorder(arr, 2*idx+1, N);
-    preorder(arr, 2*idx+2, N);
+    
+    inorder(arr, 2 * idx + 1, N);           
+    printf("%d ", arr[idx]);                
+    inorder(arr, 2 * idx + 2, N); 
+}          
+
+
+void postorder(int arr[], int idx, int N) {
+    if (idx >= N) {
+        return;
+    }
+    
+    postorder(arr, 2 * idx + 1, N);         
+    postorder(arr, 2 * idx + 2, N);        
+    printf("%d ", arr[idx]);               
 }
 
- //Fungsi in-order
- void inorder(int arr[], int idx, int N){
-    //kalau proses sudah selesai, return
-    if (idx>=N){
-        return;
-    }
-
-    inorder(arr, 2*idx+1, N);
-    printf("%d", arr[idx]);   
-    if(idx<N-1){
-        printf(" ");
-    }   
-    inorder(arr, 2*idx+2, N);
- }
-
- //Fungsi post-order
- void postorder(int arr[], int idx, int N){
-    //kalau proses sudah selesai, return
-    if (idx>=N){
-        return;
-    }
-    postorder(arr, 2*idx+1, N);
-    postorder(arr, 2*idx+2, N);
-    printf("%d ", arr[idx]);
-    deletespace(arr, idx);
- }
-
- int main() {
-    //input jumlah node
+int main() {
     int N;
-    scanf("%d", &N);
-
-    //inisialisasi array
-    int i;
     int arr[MAX];
-
-    //input node
-    for(i=0; i<N; i++){
+    
+    scanf("%d", &N);
+    for (int i = 0; i < N; i++) {
         scanf("%d", &arr[i]);
     }
-
-    printf("PRE "); 
-    preorder(arr,0, N);
-
+    
+    printf("PRE ");
+    preorder(arr, 0, N);
+    
     printf("\nIN ");
-    inorder(arr,0,N);
-
+    inorder(arr, 0, N);
+    
     printf("\nPOST ");
-    postorder(arr,0,N);
-
+    postorder(arr, 0, N);
+   
     return 0;
- }
+}
