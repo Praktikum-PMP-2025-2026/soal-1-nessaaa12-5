@@ -23,7 +23,7 @@
 
  void deletespace(int arr[], int idx) {
     if (idx >= 0 && arr[idx] == ' ') {
-        arr[idx] = '\0'; 
+        arr[idx] = '\0'; // Move the null terminator back
         deletespace(arr, idx - 1); 
     }
 }
@@ -34,8 +34,10 @@
     if (idx>=N){
         return;
     }
-    printf("%d ", arr[idx]);
-    deletespace(arr, idx);
+    printf("%d", arr[idx]);   
+    if(idx<N){
+        printf(" ");
+    }   
     preorder(arr, 2*idx+1, N);
     preorder(arr, 2*idx+2, N);
 }
@@ -48,8 +50,10 @@
     }
 
     inorder(arr, 2*idx+1, N);
-    printf("%d ", arr[idx]);
-    deletespace(arr, idx);
+    printf("%d", arr[idx]);   
+    if(idx<N){
+        printf(" ");
+    }   
     inorder(arr, 2*idx+2, N);
  }
 
