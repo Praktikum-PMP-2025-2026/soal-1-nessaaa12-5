@@ -25,7 +25,7 @@ void preorder(int arr[], int idx, int N) {
         return;
     }
     
-    printf("%d ", arr[idx]);               
+    printf(" %d", arr[idx]);               
     preorder(arr, 2 * idx + 1, N);        
     preorder(arr, 2 * idx + 2, N);        
 }
@@ -37,7 +37,7 @@ void inorder(int arr[], int idx, int N) {
     }
     
     inorder(arr, 2 * idx + 1, N);           
-    printf("%d ", arr[idx]);                
+    printf(" %d ", arr[idx]);                
     inorder(arr, 2 * idx + 2, N); 
 }          
 
@@ -49,7 +49,7 @@ void postorder(int arr[], int idx, int N) {
     
     postorder(arr, 2 * idx + 1, N);         
     postorder(arr, 2 * idx + 2, N);        
-    printf("%d ", arr[idx]);               
+    printf(" %d ", arr[idx]);               
 }
 
 int main() {
@@ -61,14 +61,17 @@ int main() {
         scanf("%d", &arr[i]);
     }
     
-    printf("PRE ");
+    printf("PRE");
     preorder(arr, 0, N);
+    printf("\n");
     
-    printf("\nIN ");
+    printf("IN");
     inorder(arr, 0, N);
+    printf("\n");
     
-    printf("\nPOST ");
+    printf("POST");
     postorder(arr, 0, N);
-   
+    printf("\n");
+    
     return 0;
 }
