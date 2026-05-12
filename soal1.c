@@ -35,7 +35,7 @@
         return;
     }
     printf("%d", arr[idx]);   
-    if(idx<N){
+    if(idx<N-1){
         printf(" ");
     }   
     preorder(arr, 2*idx+1, N);
@@ -51,7 +51,7 @@
 
     inorder(arr, 2*idx+1, N);
     printf("%d", arr[idx]);   
-    if(idx<N){
+    if(idx<N-1){
         printf(" ");
     }   
     inorder(arr, 2*idx+2, N);
