@@ -27,9 +27,16 @@
     if (idx>=N){
         return;
     }
-    printf("%d ", arr[idx]);
+    if (idx<N){
+        printf("%d ", arr[idx]);
+    }
+    else{
+        printf("%d", arr[idx]);
+    }
     preorder(arr, 2*idx+1, N);
     preorder(arr, 2*idx+2, N);
+    
+    
  }
 
  //Fungsi in-order
@@ -38,8 +45,15 @@
     if (idx>=N){
         return;
     }
+
     inorder(arr, 2*idx+1, N);
-    printf("%d ", arr[idx]);
+
+    if(idx<N){
+        printf("%d ", arr[idx]);
+    }
+    else{
+        printf("%d", arr[idx]);
+    }
     inorder(arr, 2*idx+2, N);
  }
 
@@ -51,7 +65,14 @@
     }
     postorder(arr, 2*idx+1, N);
     postorder(arr, 2*idx+2, N);
-    printf("%d ", arr[idx]);
+
+    if (idx<N){
+        printf("%d ", arr[idx]);
+    }
+    else{
+         printf("%d", arr[idx]);
+    }
+
  }
 
  int main() {
@@ -69,7 +90,7 @@
     }
 
     printf("PRE "); 
-    preorder(arr,0,N);
+    preorder(arr,0, N);
 
     printf("\nIN ");
     inorder(arr,0,N);
