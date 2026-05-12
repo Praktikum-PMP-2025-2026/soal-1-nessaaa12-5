@@ -20,14 +20,22 @@
  #include <string.h>
 
  #define MAX 50
- 
+
+ void deletespace(int arr[], int idx) {
+    if (idx >= 0 && arr[idx] == ' ') {
+        arr[idx] = '\0'; 
+        deletespace(arr, idx - 1); 
+    }
+}
+
  //Fungsi pre-order
  void preorder(int arr[], int idx, int N){
     //kalau proses sudah selesai, return
     if (idx>=N){
         return;
     }
-    printf("%d%s", arr[idx], (idx == N - 1) ? "" : " ");
+    printf("%d ", arr[idx]);
+    deletespace(arr, idx);
     preorder(arr, 2*idx+1, N);
     preorder(arr, 2*idx+2, N);
 }
@@ -40,7 +48,8 @@
     }
 
     inorder(arr, 2*idx+1, N);
-    printf("%d%s", arr[idx], (idx == N - 1) ? "" : " ");
+    printf("%d ", arr[idx]);
+    deletespace(arr, idx);
     inorder(arr, 2*idx+2, N);
  }
 
@@ -52,7 +61,8 @@
     }
     postorder(arr, 2*idx+1, N);
     postorder(arr, 2*idx+2, N);
-    printf("%d%s", arr[idx], (idx == N - 1) ? "" : " ");
+    printf("%d ", arr[idx]);
+    deletespace(arr, idx);
  }
 
  int main() {
